@@ -1,1 +1,1 @@
-#+TITLE: Emacs Tutorial - Notes
+#+TITLE: GNU Emacs Tutorial - Notes
