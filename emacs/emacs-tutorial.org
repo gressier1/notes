@@ -1,1 +1,58 @@
 #+TITLE: GNU Emacs Tutorial - Notes
+
+GNU Emacs Tutorial
+
+Emacs version 25.3.1
+
+
+* Notes
+
+- _CONTROL key:_ sometimes labeled as CTRL or CTL \rightarrow C-<chr>
+- _META key:_ sometimes labeled as EDIT or ALT \rightarrow M-<chr>
+
+| Key                | Command                      | Description                                                                                           |
+|--------------------+------------------------------+-------------------------------------------------------------------------------------------------------|
+| =C-x C-c=          | =save-buffers-kill-terminal= | End the Emacs session                                                                                 |
+| =C-g=              | =keyboard-quit=              | Quit a partially entered command                                                                      |
+| =C-z (or C-x C-z)= | =suspend-frame=              | Do whatever is right to suspend the current frame                                                     |
+|                    |                              |                                                                                                       |
+| =C-v=              | =scroll-up-command=          | Move forward one screenful (*overlap of 2 lines* to provide some continuity)                          |
+| =M-v=              | =scroll-down-command=        | Move backward one screenful                                                                           |
+| =C-l=              | =recenter-top-bottom=        | Clear screen and redisplay all the text, moving the text aroud the cursor to the center of the screen |
+
+- (You can also use =<PageUp>= and =<PageDn>= to move screenful)
+- (You can also use the arrow keys to move point)
+
+- =C-x C-c= is the right key to use when about to log out or ending a quick edit (e.g., with filename as argument to Emacs)
+
+- With numeric prefix ARG, =C-l= move current line to window-line ARG
+
+
+| =C-f=             | =forward-char=           | Move forward a character            |
+| =C-b=             | =backward-char=          | Move backward a character           |
+|                   |                          |                                     |
+| =M-f=             | =forward-word=           | Move forward a word                 |
+| =M-b=             | =backward-word=          | Move backward a word                |
+|                   |                          |                                     |
+| =C-n=             | =next-line=              | Move to next line                   |
+| =C-p=             | =previous-line=          | Move to previous line               |
+|                   |                          |                                     |
+| =C-a (or <home>)= | =move-beginning-of-line= | Move to beginning of line           |
+| =C-e=             | =move-end-of-line=       | Move to end of line                 |
+|                   |                          |                                     |
+| =M-a=             | =backward-sentence=      | Move back to beginning of sentence  |
+| =M-e=             | =forward-sentence=       | Move forward to end of sentence     |
+|                   |                          |                                     |
+| =M-< (or <)=      | =beginning-of-buffer=    | Move to the beginning of the buffer |
+| =M-> (or >)=      | =end-of-buffer=          | Move to the end of the buffer       |
+
+- Normally, the last line in a file will have a Newline character at the end, but Emacs does not require it
+- =C-b= and =C-f= move accross the Newline character
+
+- When the cursor move past the top or bottom of the screen, the text beyond the edge shfts onto the screen \rightarrow /Scrolling/
+
+- When you are in the middle of a word, =M-f= moves to the end of the word
+- When you are in whitespace between words, =M-f= moves to te end of the following word
+- =M-b= works likewise in the opposite direction
+
+- Very often *Meta characters* are used for operations related to the *units defined by language* (words, sentences, paragraphs), while *Control characters* operate on *basic units* that are independent of what you are editing (characters, lines, etc)
