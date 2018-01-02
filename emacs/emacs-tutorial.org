@@ -255,3 +255,27 @@ Emacs version 25.3.1
   - Auto Fill breaks lines only at spaces
   - Margin is usually set at 70 characters
   - Fill column is not updated for the whole text \rightarrow Invoke =fill-paragraph= to re-fill paragraph to the current fill-column
+
+
+| =C-s= | =isearch-forward=  | Do incremental search forward (With a prefix argument, do an incremental regular expression search instead)  |
+| =C-r= | =isearch-backward= | Do incremental search backward (With a prefix argument, do an incremental regular expression search instead) |
+
+- Type =C-s=/=C-r= again to move to next occurence
+
+- You can easily switch between =C-s= and =C-r= by typing one of the two while searching
+
+- Consider using =M-p=/=M-n= to browse search history while in isearch prompt
+  
+- _=C-s=/=C-r= search string AFTER/BEFORE point (they both do both actually but PARTIALLY)_
+  - _The first occurence is highlighted (distinctly) and the point is moved on it_
+    - =<RET>= *validates the position of point* on that first occurence
+    - !!! =<C-g>= _or any Control/Meta character that is not special to =isearch= *terminates* the search_ and place point back where it was
+
+- !!! _Consider using =C-s= and =C-r= for cursor motion_
+  - (Why would there be a C-r then?)
+
+- There are both cursor motion command
+- The Emacs search command is *incremental*: the search happens while you type in the string to search for
+  - You can easily add or remove characters to the searched string
+
+- =C-s= have an extensive help page
