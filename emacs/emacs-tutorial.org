@@ -149,3 +149,109 @@ Emacs version 25.3.1
 - (On some text terminal, =C-_= actually send =C-_= to Emacs)
 
 - Killing or yanking makes no difference for =undo=
+
+
+| =C-x C-f= | =find-file=         | Switch to a buffer visting file FILENAME, creating one if none already exists                                   |
+| =C-x C-s= | =save-buffer=       | Save current buffer in visited file if modified                                                                 |
+| =C-x s=   | =save-some-buffers= | Save some modified file-visiting buffers and asks user about each one (=C-r= to look at the buffer in question) |
+
+- When saving, Emacs leaves the original file under "original~" in case you later decide that your changes were a mistake
+
+- !!! _We say that a command like =find-file= reads an argument_
+  - The /minibuffer/ disappears when pressing <RET>
+
+- Consider using <TAB> when invoking =find-file=
+
+- =save-buffer= display the written file FILENAME in the /echo area/
+- Interesting options for backing up files by prefixing a certain numbers of =C-u= in front of =C-x C-s=
+
+- _In Elisp, =switch-to-buffer= is NOT the way to work on another buffer temporarily_ \rightarrow Use =set-buffer= instead
+
+
+| =C-x C-b= | =list-buffers=      | Display a list of existing buffers (in a buffer named =*Buffer List*=)                                          |
+| =C-x b=   | =switch-to-buffer=  | Display buffer BUFFER-OR-NAME in the selected window                                                            |
+
+- !!! _When using =C-x b=, you can press =TAB= to list al possible completions (and thus list buffers)_
+
+- _A buffer is an *intermediate* between your editing (in the memory) and the file on the disk_
+  - The need to save a buffer allows to avoid avoid leaving a half-changed file on the system when you do no not want to
+
+- _A buffer is an *object*_
+
+- *Finding a file makes a new buffer* inside Emacs
+
+- _ANY text you see in an Emacs window is *always part of some buffer*_
+
+- _Only one buffer is /current/ at any time_
+
+- =switch-to-buffer= is more convenient than calling =find-file= every time you want to switch to another buffer
+  - (Works as well and will not create a new buffer)
+  - (You must enter the complete buffer name when prompted)
+
+- Most of the time, a buffer name is the name of the corresponding file's FILENAME on the disk \rightarrow But this is not always true
+
+- Some buffers *do not correspond to any file on disk* \rightarrow E.g., =*Buffer List*=, =*Messages*=
+  - It is the case when opening the tutorial \rightarrow Until you save it with =C-x C-s=
+
+- _Switching between buffers do not save any of them on disk_
+
+- Consider using =C-x s= to *save a buffer that you would want to switch to only to save it*
+  - (Instead of switching and invoking =save-buffer=)
+
+
+| =C-x= | - | Character eXtend; followed by one character   |
+| =M-x= | - | Named command eXtend; followed by a long name |
+
+- Allows to invoke *any command* without knowing/using its bound key
+  - (Emacs offers more commands than the number of commands that can be bound to key sequences (of reasonalbe size) anyway)
+
+- =M-x= commands name can be completed by pressing =<TAB>=
+  - E.g., =repl s<TAB>= (\rightarrow =replace-=) \rightarrow =replace-string=
+  - Under certain conditions, <RET> and <SPC> can complete names too
+
+- In =M-x= minibuffer, use =M-p= and =M-n= for previous/next command in command history
+
+
+| - | =replace-string= | Replace occurences of FROM-STRING with TO-STRING |
+
+
+- Emacs periodically writes an *auto save* file for each file that are being edited
+  - _Auto saved file name format:_ #filename#
+  - Auto saved files are automatically deleted once the original file is saved
+
+
+- If a crash occur, you can recover auto-saved editing by visiting the file normally and invoke =M-x recover-this-file=
+  - (A notice would appear in the /echo area/ if text if some text is recoverable)
+- =M-x recover-file= visit file FILE, but get contents from its last auto-save file
+- =M-x recover-session= can be convenient as well (=recover-session-finish= when done)
+
+
+- The default major mode in Emacs is =Fundamental=
+
+
+| =M-;=   | =comment-dwim=    | Call the comment command you want (Do what I mean)                    |
+|         |                   |                                                                       |
+| =C-h m= | =describe-mode=   | Display documentation of current major mode and minor modes           |
+| -       | =text-mode=       | Major mode for editing text written for humans to read                |
+| -       | =auto-fill-mode=  | Toggle automatic line breaking (Minor mode)                           |
+|         |                   |                                                                       |
+| =C-x f= | =set-fill-column= | Set fill-column to specified argument (with C-u) (Works in any mode?) |
+| =M-q=   | =fill-paragraph=  | Fill paragraph at or after point                                      |
+
+- =comment-dwim= will check the *major mode* to know which commment format to insert
+
+- =Text mode= is an appropriate major mode to edit human-language text
+  - When enabled, e.g., =M-f= and =M-b= treat apostrophes as part of words (\neq word separator in =Fundamental=)
+  - *Major modes usually make subtle changes like this:* most commands do the same job but works a bit differently
+
+- _Consider =C-l= =C-l= over =C-u 0 C-l=_
+
+- *Minor modes* bring minor modification to the *major mode*
+  - They are *independant* from major mode and other minor modes \rightarrow You can use 0, 1 or n minor modes at any time
+  - _Toggle_ a minor mode by invoking it
+
+- _Auto fill mode:_
+  - =au  f<RET>= enables Auto fill mode with completion
+  - Auto Fill breaks lines only at spaces
+  - Margin is usually set at 70 characters
+  - Fill column is not updated for the whole text \rightarrow Invoke =fill-paragraph= to re-fill paragraph to the current fill-column
