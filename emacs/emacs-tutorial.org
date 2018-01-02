@@ -56,3 +56,96 @@ Emacs version 25.3.1
 - =M-b= works likewise in the opposite direction
 
 - Very often *Meta characters* are used for operations related to the *units defined by language* (words, sentences, paragraphs), while *Control characters* operate on *basic units* that are independent of what you are editing (characters, lines, etc)
+
+
+| =C-u N= (or =M-N=) | =universal-argument= | Begin a numeric argument (or prefix argument for the following command) |
+
+- *Most Emacs commands accept a numeric argument*; for most commands, this serves as a repeat-count
+- Several commands use it as a flag: the presence of a prefix argument makes the command do something different *regardless of its value*
+- =C-u= *method is recommanded* over the Meta method because *it works on any terminal*
+
+- With numeric prefix ARG, =C-v= and =M-v= scroll the text up or down *by ARG*
+- With numeric prefix ARG, =C-l= move current line to *window-line ARG*
+
+
+| =C-g= | =keyboard-quit= | Stop current command / prefix key |
+
+- Some commands are *disabled by default* (e.g., =C-x C-l=) so that beginning users cannot use them by accident
+- Type =SPC= if you want to try the command
+
+
+| =C-x 1=                | =delete-other-windows= | Delete other windows                             |
+| =C-h k <Complete KEY>= | =describe-key=         | Display documenation the function invoked by KEY |
+
+- =q= to quickly switch back to previous buffer (once a temporary one has been opened, like =*Buffer list*=)
+- =<Key>= designates a key to press
+
+- =C-h= commands opens a unique buffer named =*Help*=: its content is updated whenever you ask for help \rightarrow I.e., no new buffer is created each time you ask for help
+
+
+| =<Ordinary character>=  | =self-insert-command N= | Insert the character you type                |
+|                         |                         |                                              |
+| =<DEL>=                 | =delete-forward-char=   | Delete the character just before the cursor  |
+| =C-d (or <deletechar>)= | =delete-char=           | Delete the next character after the cursor   |
+|                         |                         |                                              |
+| =M-<DEL>=               | =backward-kill-word=    | Kill the word immediately before the cursor  |
+| =M-d=                   | =kill-word=             | Kill the next word after the cursor          |
+|                         |                         |                                              |
+| =C-k=                   | =kill-line=             | Kill from the cursor position to end of line |
+| =M-k=                   | =kill-sentence=         | Kill to the end of the current sentence      |
+
+- Ordinary characters insert text
+
+- There are very narrow spaces refered as *fringes* on each side of a window
+- If using Emacs in a graphical window, small curved arrows appear in each fringe for *continuation lines* (= lines that are so wide that they will not fit on screen)
+  - (In text terminal, a =\= is on the rightmost screen column)
+  - In certain modes, an *arrow pointing towards the edge of the screen* is shown in the fringes instead \rightarrow Indicates that there is more text in that direction
+
+- Deleting a Newline character between two lines merge them into *one line*
+- <Return> is special since it may do more than just insert a Newline character: it may insert whitespace after the Newline character to align text with the previous line
+- _Electric behavior:_ when pressing a key does more than simply inserting the relevant character
+
+
+| =C-SPC (or C-@)= | =set-mark-command= | Set the mark where point is, and activate it; or jump to the mark |
+
+- Kill a segment of text with one uniform method: =C-<SPC>= \rightarrow Move point \rightarrow =C-w=
+  - (Character at point is not killed)
+
+- *Kill VS Delete:* killed text can be yanked later
+  - (Get deleted text back with undos)
+  - Commands that remove a lot of text usually kill it
+
+- =C-k= will kill a Newline character only if the cursor is on it: =C-k= twice to kill a whole line
+  - _However =C-u <n> C-k>= will kill =n= lines with their Newline character_
+
+- Killing and yanking is sometimes called cutting and pasting in other text editors
+
+
+| =C-y= | =yank=     | Reinsert the last stretch of killed text (i.e., the most recent kill) |
+| =M-y= | =yank-pop= | Replace just-yanked stretch of killed text with a different stretch   |
+
+- =yank= insert text at point
+- You can call =yank= multiple times
+
+- !!! _If multiple kills are done in a row, all of the kiled text is saved together_
+  - (Moving point counts)
+
+- =yank-pop= must be called just after a =yank= call
+- (When you reach the wanted stretch of killed text, continue your editing)
+- =yank-pop= cycles: if the earliest kill has been reached, the next =yank-pop= will insert the most recent kill again
+
+- With argument N, *insert the Nth previous kill*
+  - If N is negative, this is a *more recent kill*
+
+
+| =C-/ (or C-_ or C-x u)= | =undo= | Undo some previous changes |
+
+- _A numeric ARG to =undo= serves as a repeat count_
+- Each repetition undoes one more command
+
+- _Commands that do not change the text don't count_ \rightarrow E.g., cursor motion commands, scrolling commands
+- _Self-inserting characters are usually handled in groups of up to 20_ \rightarrow To reduce the number of =undo= call
+
+- (On some text terminal, =C-_= actually send =C-_= to Emacs)
+
+- Killing or yanking makes no difference for =undo=
