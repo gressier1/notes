@@ -1,1 +1,5 @@
 #+TITLE: GNU Emacs Manual - Notes
+
+GNU Emacs Manual
+
+17th Edition - Emacs version 26.0.60
