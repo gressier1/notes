@@ -279,3 +279,90 @@ Emacs version 25.3.1
   - You can easily add or remove characters to the searched string
 
 - =C-s= have an extensive help page
+
+
+| =C-l= =C-l=              | =recenter-top-bottom=    | It is cycling (successive calls place point accoriding to the cycling order defined by the variable (array) recenter-positions) \rightarrow Pressing it twice moves the window line where the point is on top |
+|                          |                          |                                                                                                                                                                                                               |
+| =C-x 2=                  | =split-window-below=     | Split the selected window into two windows, one above the other (*the selected window stays above*)                                                                                                           |
+| =C-M-v (or M-<next>)=    | =scroll-other-window=    | Scroll next window upward ARG lines; or near full screen if no ARG                                                                                                                                            |
+| =C-x o=                  | =other-window=           | Select another window in *cyclic ordering of windows* (Can take negative argument)                                                                                                                            |
+|                          |                          |                                                                                                                                                                                                               |
+| =C-x 4 C-f (or C-x 4 f)= | =find-file-other-window= | Edit file FILENAME, in another window (and select that window)                                                                                                                                                |
+| =C-x 4 C-o=              | =display-buffer=         | Display BUFFER-OR-NAME in some window, without selecting that window                                                                                                                                          |
+
+- Each Emacs window display one *buffer*
+  - Multiple windows can display the same buffer \rightarrow This is what happens when opening another window
+
+- The order in which you press the *modifier keys* of CONTROL-META character does not matter
+  - (It matters if you are using =ESC C-v= (since =ESC= is a prefix key sequence))
+
+- =C-1= deletes every other window but the selected one
+
+- _Emacs is thought in a manner that makes the cursor always visible in the window_ \rightarrow The window adapts itself
+
+
+| -         | =make-frame=   | Return a newly create frame displaying the current buffer (there is nothing special about the first frame) |
+| =C-x 5 0= | =delete-frame= | Delete FRAME, permanently eliminating it from use                                                          |
+
+- !!! _A frame is mostly a collection of windows (along with all the other smaller regions)_
+
+- Only a *single frame can be shown at a time* when using *text terminal*, on the contrary to *multiple frames* when using a *graphical display*
+
+- You can also delete a frame normally by using your window manager
+
+- !!! _If you remove the Emacs job's last frame, that exits Emacs_
+
+
+| =ESC ESC ESC (or M-ESC ESC)= | =keyboard-escape-quit= | Exit the current "mode" (in a greneralized sense of the word) (e.g., query-replace, prefix argument or a region, minibuffer or other recursive edit, go back to a single window) |
+
+- Sometimes you will get into a *recursive editing level*
+  - Indicated by =[]= around modes in the /mode line/: e.g., =[(Fundamental)]=
+  - Use =ESC ESC ESC= to get out; =C-g= will not work
+    - \rightarrow Because =C-g= is used for canceling commands and arguments WITHIN the recursive editing level
+
+
+| =C-h ? (or C-h C-h)= | =help-for-help=        | Help command                                                                                        |
+|                      |                        |                                                                                                     |
+| =C-h c=              | =describe-key-briefly= | Print the name of the function KEY invokes in the echo area; KEY is a string                        |
+| =C-h k=              | =describe-key=         | Display documentation of the function invoked by KEY                                                |
+| =C-h a=              | =apropos-command=      | Show commands (interactively callable function) that match PATTERN                                  |
+|                      |                        |                                                                                                     |
+| =C-h f=              | =describe-function=    | Display the full documentation of FUNCTION (a symbol)                                               |
+| =C-h v=              | =decribe-variable=     | Display the full documentation of VARIABLE (a symbol)                                               |
+|                      |                        |                                                                                                     |
+| =C-h i=              | =info=                 | Enter Info, the documentation browser (Optional argument FILE-OR-NODE specifies the file to examine |
+| =C-h r=              | =info-emacs-manual=    | Display the Emacs manual in info mode                                                               |
+| =C-h t=              | =help-with-tutorial=   | Select the Emacs learn-by-doing tutorial                                                            |
+
+- Emacs provides commands for reading documentation about Emacs commands
+
+- _Consider using =TAB= to complete symbol names while using those help commands_
+
+- Most function names are wisely chosen to *indicate already well enough what one of them does* \rightarrow Sufficient most of the time
+
+- =C-h= is commonly referred as *the Help character*
+  - (You could also use =F1= or =M-x help=)
+
+- =C-h k= and =C-h c= prompts you for *a complete key sequence*
+
+- (Likewisely to opening a window?), opening a window containing the =*Help*= buffer does not change the selected widow
+  - You can do some editing while referring to the help text, and *get rid of the related window when done*
+
+- =C-h a= will also list *key sequences bound to commands* if one exist (\rightarrow Listed beside)
+  - (=C-h a= prompts you for a regexp or a word list)
+
+- =C-h i= allow you to read manuals for the packages installed on your system
+  - _Type =m= to select a menu item in an info page_
+  - _Type ? and Emacs will take you on a guided tour of Info mode facilities_
+
+
+
+\rightarrow "Once you are through with this tutorial, you should consult the Emacs Info manual as your primary documentation."
+\rightarrow "However, you may want to learn more about Emacs since it has many other useful features."
+\rightarrow "Two features that you may like especially are completion, which saves typing, and dired, which simplifies file handling."
+
+
+* Other notes
+
+- Minibuffer (as well as its completions) is a window you can move to
+- =C--= runs the the command =negative-argument=
