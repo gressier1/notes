@@ -3,3 +3,12 @@
 GNU Emacs Manual
 
 17th Edition - Emacs version 26.0.60
+
+
+* Preface
+
+- Documents the *use* and *simple customization* of the Emacs editor.
+(Simple customization do not require you to be a programmer)
+
+- Primarily a *reference manual*.
+(Can also be used as a *primer*)
