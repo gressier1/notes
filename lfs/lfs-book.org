@@ -1,1 +1,3 @@
 #+TITLE: Linux From Scratch Book - Notes
+
+* Notes
